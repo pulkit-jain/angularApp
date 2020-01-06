@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from '../cart.service';
 
 import { products } from '../products';
 
@@ -9,6 +10,9 @@ import { products } from '../products';
 })
 export class ProductListComponent {
   products = products;
+productDataList;
+  constructor(private cartService: CartService) { }
+
 
   share() {
     window.alert('The product has been shared!');
@@ -18,6 +22,17 @@ export class ProductListComponent {
     window.alert('You will be notified when the product goes on sale');
   }
   
+     ngOnInit() {
+       this.productDataList = this.cartService.getProductData();
+
+  // this.cartService.getProductData().subscribe(url=>{
+  //    if(url){
+  //        this.productDataList = url;
+  //        console.warn(" this.productDataList 1:", this.productDataList )
+  //     }})
+
+       //console.warn(" this.productDataList 0:", this.productDataList )
+   }
 }
 
 
