@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class CartService {
   shippingUrl;
+  dataUrl;
   items = [];
 
   addToCart(product) {
@@ -29,15 +30,30 @@ export class CartService {
       return this.http.get(this.shippingUrl);
     }
 
+  getProductData() {
+      //return this.http.get('/assets/shipping.json');
+      return this.http.get(this.dataUrl);
+    }    
+
   constructor(private http: HttpClient,private storage: AngularFireStorage,) { 
 
-    const ref = this.storage.ref('shipping.json');
-    const downloadUrl = ref.getDownloadURL();
+    // const ref = this.storage.ref('shipping.json');
+    // const downloadUrl = ref.getDownloadURL();
 
-    downloadUrl.subscribe(url=>{
+    // downloadUrl.subscribe(url=>{
+    //  if(url){
+    //      this.shippingUrl = url;
+    //   }})
+
+    const ref1 = this.storage.ref('dataNew.json');
+    const downloadUrl1 = ref1.getDownloadURL();
+
+    downloadUrl1.subscribe(url=>{
      if(url){
-         this.shippingUrl = url;
+         this.dataUrl = url;
       }})
+
+
   }
 }
 
