@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {MatNativeDateModule} from '@angular/material/core';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -16,6 +17,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartService } from './cart.service';
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
+import {DemoMaterialModule} from './shipping/material-module';
 
 @NgModule({
   imports: [
@@ -24,6 +26,8 @@ import { ShippingComponent } from './shipping/shipping.component';
     AngularFireStorageModule,  
     HttpClientModule,
     ReactiveFormsModule,
+    MatNativeDateModule,
+    DemoMaterialModule,
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
       { path: 'products/:productId', component: ProductDetailsComponent },
