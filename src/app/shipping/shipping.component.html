@@ -14,7 +14,6 @@
 </mat-grid-list> -->
 
 <div class="product-item" *ngFor="let product of productData | async">
-
     <mat-card class="example-card">
       <img mat-card-image src="https://drive.google.com/uc?id={{ product.id }}" alt="Photo of a Product">
       <mat-card-content>
@@ -27,7 +26,6 @@
         <button mat-button>SHARE</button>
       </mat-card-actions>
     </mat-card>
-
 </div>
 
 <!-- <mat-grid-list cols="2">
