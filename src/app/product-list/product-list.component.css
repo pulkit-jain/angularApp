@@ -1,7 +1,27 @@
+mat-grid-tile {
+  background: lightblue;
+}
 
+.example-card {
+  max-width: 400px;
+}
 
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+mat-card img{
+  object-fit: cover; /*this makes the image in src fit to the size specified below*/
+  width: 350px; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  height: 350px;
+}
+
+.product-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px 32px;
+  margin-bottom: 8px;
+  border-radius: 2px;
+}

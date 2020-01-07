@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireStorage } from '@angular/fire/storage';
 import {Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Subject }    from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class ProductListService {
+export class ProductDataService {
   dataUrl;
   
   private isLoadingCompleteSrc = new Subject<boolean>();
@@ -29,19 +30,9 @@ export class ProductListService {
 
     downloadUrl.subscribe(url=>{
      if(url){
-          //console.warn("this.dataUrl: ",this.dataUrl );
+          console.warn("this.dataUrl: ",this.dataUrl );
          this.dataUrl = url;
          this.dataLoaded();
       }})
   }
 }
-
-    // loadProductData()
-    // {
-    // this.http.get('/api/users')
-    // .map(res => res.json())
-    //     .subscribe((data) => {
-    //       this.productData = data;
-    //     });
-    // }
-

@@ -19,6 +19,7 @@ import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import {DemoMaterialModule} from './shipping/material-module';
 import { ProductListService } from './product-list/product-list.service';
+import { ProductDataService } from './product-data.service';
 
 @NgModule({
   imports: [
@@ -46,7 +47,7 @@ import { ProductListService } from './product-list/product-list.service';
     ShippingComponent
   ],
   bootstrap: [ AppComponent ],
-  providers: [CartService, ProductListService]
+  providers: [CartService, ProductListService, ProductDataService]
 })
 export class AppModule { }
 

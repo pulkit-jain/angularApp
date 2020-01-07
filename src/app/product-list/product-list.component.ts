@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CartService } from '../cart.service';
+//import { ProductListService }     from './product-list.service';
+import { ProductDataService } from '../product-data.service';
 
 import { products } from '../products';
 import {Observable} from 'rxjs';
@@ -16,7 +18,15 @@ export class ProductListComponent {
   public productDataValue; 
   products = products;
   productDataList;
-  constructor(private cartService: CartService) { }
+
+  constructor(private cartService: CartService,
+  private productDataService: ProductDataService) {
+    
+     cartService.isLoadingComplete.subscribe(data => {
+          this.isloading = data;
+          this.productDataList = this.cartService.getProductData();
+      });
+   }
 
 
   share() {
@@ -28,7 +38,7 @@ export class ProductListComponent {
   }
   
      ngOnInit() {
-       this.productDataList = this.cartService.getShippingPrices();
+       //this.productDataList = this.cartService.getShippingPrices();
 
   // this.cartService.getProductData().subscribe(url=>{
   //    if(url){
