@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CartService } from '../cart.service';
 
 import { products } from '../products';
+import {Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-product-list',
@@ -9,8 +12,10 @@ import { products } from '../products';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
+  public isloading = true; 
+  public productDataValue; 
   products = products;
-productDataList;
+  productDataList;
   constructor(private cartService: CartService) { }
 
 
@@ -23,7 +28,7 @@ productDataList;
   }
   
      ngOnInit() {
-       this.productDataList = this.cartService.getProductData();
+       this.productDataList = this.cartService.getShippingPrices();
 
   // this.cartService.getProductData().subscribe(url=>{
   //    if(url){

@@ -4,6 +4,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { productList } from './product-list/product-list.component';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,9 +28,65 @@ export class CartService {
   }
 
   getShippingPrices() {
+
+    
       //return this.http.get('/assets/shipping.json');
-      return this.http.get(this.shippingUrl);
+      console.warn("this.shippingUrl 1: ",this.shippingUrl );
+      //return this.http.get(this.shippingUrl);
+      //productList.isloading = false;
+
+    const ref = this.storage.ref('shipping.json');
+    const downloadUrl = ref.getDownloadURL();
+
+    downloadUrl.subscribe(url=>{
+     if(url){
+         //this.shippingUrl = url;
+         console.warn("url: ",url );
+
+         return this.http.get(url);
+      }})
+
+
+      // // this.http.get<any>(this.shippingUrl1)
+// //   .subscribe(response => 
+// //   {
+// //    // console.log("records"+this.data1)
+// //   //this.data1=JSON.stringify(response) // impoprtant
+// //   //console.log("records"+this.data1)
+// //   });
+
     }
+
+loadShippingData()
+{
+      this.http.get<any>(this.shippingUrl)
+  .subscribe(response => 
+  {
+    if(response){
+          console.log("response:"+response);
+
+    const data = response;
+    productList.isloading = false;
+    //console.log("records"+productList.productDataValue);
+    }
+   // console.log("records"+this.data1)
+  //this.data1=JSON.stringify(response) // impoprtant
+  //console.log("records"+this.data1)
+  });
+
+
+
+        // this.http.get(this.shippingUrl)
+        // .pipe(map((res: Response) => res.json()))
+        // .subscribe(
+        //     data => {
+        //         productList.productDataValue = 
+        //             data.map(countObj => countObj.countRealTimeServedApi);
+        //         productList.isloading = false;
+        //     },
+        // );
+
+}
 
   getProductData() {
       //return this.http.get('/assets/shipping.json');
@@ -36,22 +94,24 @@ export class CartService {
     }    
 
   constructor(private http: HttpClient,private storage: AngularFireStorage,) { 
+console.warn("this.constructor: " );
+    const ref = this.storage.ref('shipping.json');
+    const downloadUrl = ref.getDownloadURL();
 
-    // const ref = this.storage.ref('shipping.json');
-    // const downloadUrl = ref.getDownloadURL();
-
-    // downloadUrl.subscribe(url=>{
-    //  if(url){
-    //      this.shippingUrl = url;
-    //   }})
-
-    const ref1 = this.storage.ref('dataNew.json');
-    const downloadUrl1 = ref1.getDownloadURL();
-
-    downloadUrl1.subscribe(url=>{
+    downloadUrl.subscribe(url=>{
      if(url){
-         this.dataUrl = url;
+         this.shippingUrl = url;
+         console.warn("this.shippingUrl: ",this.shippingUrl );
+         this.loadShippingData();
       }})
+
+    // const ref1 = this.storage.ref('dataNew.json');
+    // const downloadUrl1 = ref1.getDownloadURL();
+
+    // downloadUrl1.subscribe(url=>{
+    //  if(url){
+    //      this.dataUrl = url;
+    //   }})
 
 
   }
