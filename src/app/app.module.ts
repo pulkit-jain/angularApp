@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatNativeDateModule} from '@angular/material/core';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
@@ -24,6 +24,7 @@ import { ProductDataService } from './product-data.service';
 @NgModule({
   imports: [
     BrowserModule,
+    FlexLayoutModule ,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,  
     HttpClientModule,

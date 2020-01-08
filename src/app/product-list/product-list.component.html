@@ -1,5 +1,7 @@
 <h2>Products</h2>
 
+
+
 <!-- <div *ngFor="let product of products; index as productId">
     <h3>    
       <a [title]="product.name + ' details'" 
@@ -40,7 +42,19 @@
 </div>
 </div>
 </div> -->
-
+<div 
+  fxLayout="row wrap" 
+  fxLayout.lt-sm="column" 
+  fxLayoutGap="32px" 
+  fxLayoutAlign="flex-start">
+<ng-container *ngFor="let _ of [1,2,3,4,5,6]">
+  <span 
+    fxFlex="0 1 calc(33.3% - 32px)"
+    fxFlex.lt-md="0 1 calc(50% - 32px)"
+    fxFlex.lt-sm="100%"
+  > 1 </span>
+</ng-container>
+</div>
 
 <div *ngIf="!isloading;else loading">
 <div *ngIf="productDataList | async as productList;else loading">
