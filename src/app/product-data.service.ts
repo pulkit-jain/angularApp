@@ -10,7 +10,7 @@ import { Subject }    from 'rxjs';
 })
 
 export class ProductDataService {
-  dataUrl;
+  shippingUrl;
   
   private isLoadingCompleteSrc = new Subject<boolean>();
   isLoadingComplete = this.isLoadingCompleteSrc.asObservable();
@@ -20,7 +20,7 @@ export class ProductDataService {
   }
 
   getProductData() {
-      return this.http.get(this.dataUrl);
+      return this.http.get(this.shippingUrl);
     }    
 
   constructor(private http: HttpClient,private storage: AngularFireStorage,) { 
@@ -30,8 +30,8 @@ export class ProductDataService {
 
     downloadUrl.subscribe(url=>{
      if(url){
-          console.warn("this.dataUrl: ",this.dataUrl );
-         this.dataUrl = url;
+         this.shippingUrl = url;
+          console.warn("this.dataUrl: ",this.shippingUrl );
          this.dataLoaded();
       }})
   }

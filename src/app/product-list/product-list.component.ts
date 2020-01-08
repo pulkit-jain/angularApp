@@ -22,9 +22,9 @@ export class ProductListComponent {
   constructor(private cartService: CartService,
   private productDataService: ProductDataService) {
     
-     cartService.isLoadingComplete.subscribe(data => {
+     productDataService.isLoadingComplete.subscribe(data => {
           this.isloading = data;
-          this.productDataList = this.cartService.getProductData();
+          this.productDataList = this.productDataService.getProductData();
       });
    }
 

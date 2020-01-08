@@ -47,7 +47,7 @@ import { ProductDataService } from './product-data.service';
     ShippingComponent
   ],
   bootstrap: [ AppComponent ],
-  providers: [CartService, ProductListService, ProductDataService]
+  providers: [CartService,ProductDataService, ProductListService ]
 })
 export class AppModule { }
 
